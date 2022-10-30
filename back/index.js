@@ -30,14 +30,14 @@ app.get('/parduotuves',(req,res)=>{
     if (err)
     {
       console.log(err,'errs');
-      res.send({
+      res.status(404).send({
         message:'Not found',
         status:404,
       });
     }
     if (result.length>0)
     {
-      res.send({
+      res.status(200).send({
         message:'all users data',
         status:200,
         data:result
@@ -56,7 +56,7 @@ app.get('/parduotuves/:id',(req,res)=>{
     if(err) {console.log(err);}
     if (result.length >0)
     {
-      res.send({
+      res.send(200).send({
         message:'get single data',
         status:200,
         data:result
@@ -81,7 +81,7 @@ app.get('/parduotuves/:id/skyriai',(req,res)=>{
     if(err) {console.log(err);}
     if (result.length >0)
     {
-      res.send({
+      res.status(200).send({
         message:'visi skyriai',
         status:200,
         data:result
@@ -90,7 +90,7 @@ app.get('/parduotuves/:id/skyriai',(req,res)=>{
     }
     else
     {
-      res.send({
+      res.status(404).send({
         message:'data not found',
         status:404
       });
@@ -107,7 +107,7 @@ app.get('/parduotuves/:id/skyriai/:ids',(req,res)=>{
     if(err) {console.log(err);}
     if (result.length >0)
     {
-      res.send({
+      res.status(200).send({
         message:'get single data',
         status:200,
         data:result
@@ -116,7 +116,7 @@ app.get('/parduotuves/:id/skyriai/:ids',(req,res)=>{
     }
     else
     {
-      res.send({
+      res.status(404).send({
         message:'data not found',
         status:404
       });
@@ -133,7 +133,7 @@ app.get('/parduotuves/:id/skyriai/:ids/prekes',(req,res)=>{
     if(err) {console.log(err);}
     if (result.length >0)
     {
-      res.send({
+      res.status(200).send({
         message:'get all data',
         status:200,
         data:result
@@ -142,7 +142,7 @@ app.get('/parduotuves/:id/skyriai/:ids/prekes',(req,res)=>{
     }
     else
     {
-      res.send({
+      res.status(404).send({
         message:'data not found',
         status:404
       });
@@ -160,7 +160,7 @@ app.get('/parduotuves/:id/skyriai/:ids/prekes/:idp',(req,res)=>{
     if(err) {console.log(err);}
     if (result.length >0)
     {
-      res.send({
+      res.status(200).send({
         message:'get single data',
         status:200,
         data:result
@@ -169,7 +169,7 @@ app.get('/parduotuves/:id/skyriai/:ids/prekes/:idp',(req,res)=>{
     }
     else
     {
-      res.send({
+      res.status(404).send({
         message:'data not found',
         status:404
       });
@@ -180,7 +180,7 @@ app.get('/parduotuves/:id/skyriai/:ids/prekes/:idp',(req,res)=>{
 
 //parduotuves itraukimas
 app.post('/parduotuves',(req, res)=>{
-  if (!req.body) return res.send({
+  if (!req.body) return res.status(404).send({
     message:'data not found',
     status:404
   });
@@ -196,14 +196,14 @@ app.post('/parduotuves',(req, res)=>{
   db.query(qr,(err,result)=>{
     if (err){
       console.log(err);
-      res.send({
+      res.status(500).send({
         message:'can not insert data',
         status:500
       });
     }
     else{
       console.log(result,'result')
-      res.send({
+      res.status(201).send({
         message:'data inserted',
         status:201
       });
@@ -231,7 +231,7 @@ app.post('/parduotuves/:id/skyriai',(req, res)=>{
   db.query(qr2,(err,result)=>{
     if (err){
       console.log(err);
-      res.send({
+      res.status(500).send({
         message:'can not insert data',
         status:500
       });
@@ -240,14 +240,14 @@ app.post('/parduotuves/:id/skyriai',(req, res)=>{
       db.query(qr,(err,result)=>{
         if (err){
           console.log(err);
-          res.send({
+          res.status(403).send({
             message:'can not insert data',
             status:403
           });
         }
         else{
           console.log(result,'result'),
-          res.send({
+          res.status(201).send({
             message:'data inserted',
             status:201
           });
@@ -269,20 +269,20 @@ app.post('/parduotuves/:id/skyriai/:ids/prekes',(req, res)=>{
   let qr = `insert into preke(pavadinimas, aprasymas, svoris_gramais, skyrius_id, parduotuve_id) values('${pavadinimas}','${aprasymas}','${svoris_gramais}','${skyrius_id}','${parduotuve_id}')`;
 
   db.query(qr,(err,result)=>{
-    if (!req.body) return res.send({
+    if (!req.body) return res.status(404).send({
       message:'data not found',
       status:404
     });
     if (err){
       console.log(err);
-      res.send({
+      res.status(500).send({
         message:'can not insert data',
         status:500
       });
     }
     else{
       console.log(result,'result')
-      res.send({
+      res.status(201).send({
         message:'data inserted',
         status:201
       });
@@ -307,7 +307,7 @@ app.put('/parduotuves/:id',(req,res)=>{
   db.query(qr,(err,result)=>{
     console.log(result);
     if (result.affectedRows==0) {
-      return res.send({
+      return res.status(403).send({
         message:'can not update data',
         status:403
       });
@@ -315,7 +315,7 @@ app.put('/parduotuves/:id',(req,res)=>{
     }
     else
     {
-      res.send({
+      res.status(200).send({
         message:'data updated',
         status:200
       });
@@ -338,14 +338,14 @@ app.put('/parduotuves/:id/skyriai/:ids',(req,res)=>{
   db.query(qr,(err,result)=>{
     console.log(result);
     if (result.affectedRows==0) {
-      res.send({
+      res.status(403).send({
         message:'can not update data',
         status:403
       });
     }
     else
     {
-      res.send({
+      res.status(200).send({
         message:'data updated',
         status:200
       });
@@ -368,14 +368,14 @@ app.put('/parduotuves/:id/skyriai/:ids/prekes/:idp',(req,res)=>{
   db.query(qr,(err,result)=>{
     console.log(result);
     if (result.affectedRows==0) {
-      res.send({
+      res.status(403).send({
         message:'can not update data',
         status:403
       });
     }
     else
     {
-      res.send({
+      res.status(200).send({
         message:'data updated',
         status:200
       });
@@ -433,7 +433,7 @@ app.delete('/parduotuves/:id',(req,res)=>{
     console.log(result);
     if (result.affectedRows==0) {
       
-      res.send(
+      res.status(403).send(
         {
           message:'data not deleted',
           status:403
@@ -441,7 +441,7 @@ app.delete('/parduotuves/:id',(req,res)=>{
     }
     else
     {
-      res.send(
+      res.status(200).send(
         {
           message:'data deleted',
           status:200
@@ -479,7 +479,7 @@ app.delete('/parduotuves/:id/skyriai/:ids',(req,res)=>{
   db.query(qr2,(err,result)=>{
     if (result.affectedRows==0) {
       console.log(err);
-      res.send(
+      res.status(403).send(
         {
           message:'data not deleted',
           status:403
@@ -487,7 +487,7 @@ app.delete('/parduotuves/:id/skyriai/:ids',(req,res)=>{
     }
     else
     {
-      res.send(
+      res.status(200).send(
         {
           message:'data deleted',
           status:200
@@ -506,7 +506,7 @@ app.delete('/parduotuves/:id/skyriai/:ids/prekes/:idp',(req,res)=>{
   db.query(qr1,(err,result)=>{
     if (result.affectedRows==0) {
       console.log(err);
-      res.send(
+      res.status(403).send(
         {
           message:'data not deleted',
           status:403
@@ -514,7 +514,7 @@ app.delete('/parduotuves/:id/skyriai/:ids/prekes/:idp',(req,res)=>{
     }
     else
     {
-      res.send(
+      res.status(200).send(
         {
           message:'data deleted',
           status:200

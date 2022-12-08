@@ -1,9 +1,0 @@
-vienos parduotuves ikelimas 201 status code
-reikia grazinti sukurta objecta
-
-errora kad grazintu json
-
-delete status no content
-
-delete status 405 data not allowed kai visos parduotuves
-erroro turi buti json

@@ -1,0 +1,54 @@
+<header>
+</header>
+  <body>
+<div style="width: 400px; margin: auto;">
+    <div *ngIf="currentDepartment" class="edit-form">
+      <h4>Skyrius</h4>
+      <form>
+        <div class="form-group">
+          <label for="title">Pavadinimas</label>
+          <input
+            type="text"
+            class="form-control"
+            id="title"
+            [(ngModel)]="currentDepartment.pavadinimas"
+            name="title"
+          />
+        </div>
+        <div class="form-group">
+          <label for="description">Prekių tipas</label>
+          <input
+            type="text"
+            class="form-control"
+            id="description"
+            [(ngModel)]="currentDepartment.prekiu_tipas"
+            name="description"
+          />
+        </div>
+        <div class="form-group">
+            <label for="description">Prekių kiekis</label>
+            <input
+              type="text"
+              class="form-control"
+              id="description"
+              [(ngModel)]="currentDepartment.prekiu_kiekis"
+              name="description"
+            />
+          </div>
+      </form>
+      <button
+        type="submit"
+        class="badge badge-success"
+        (click)="updateDepartment()"
+      >
+        Redaguoti
+      </button>
+      <p>{{ message }}</p>
+    </div>
+  
+    <div *ngIf="!currentDepartment">
+      <br />
+      <p>Negalima pasiekti šio skyriaus</p>
+    </div>
+  </div>
+</body>

@@ -1,0 +1,32 @@
+<div class="container">
+    <header>   
+    </header>
+    <body>
+     <table class="table">
+      <div>
+        <a class="button is-light" [routerLink]="['/create-shop/']">Sukurti naują parduotuvę</a>
+      </div>
+      <tr>
+        <th>Id</th>
+        <th>Pavadinimas</th>
+        <th>Adresas</th>
+        <th>Parduotuvės vadovas</th>
+        <th>Darbuotojų kiekis</th>
+        <th>Prekių kiekis</th>
+        <th></th>
+        <th></th>
+      </tr>
+      <tr *ngFor="let us of readData">
+        <td>{{us.id}}</td>
+        <td class="button is-info" (click)="view(us.id)">{{us.pavadinimas}}</td>
+        <td>{{us.adresas}}</td>
+        <td>{{us.svoris_gramais}}</td>
+        <td>{{us.darbuotoju_kiekis}}</td>
+        <td>{{us.prekiu_kiekis}}</td>
+        <td><a class="button is-warning" [routerLink]="['/shop-details/', us.id]">Redaguoti</a></td>
+        <td><a class="button is-danger" (click)="onDeleteShop(us.id)">Pašalinti</a></td>
+      </tr>
+    </table>
+  
+    </body>
+  </div>

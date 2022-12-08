@@ -1,0 +1,26 @@
+<div class="container">
+  <header>
+    <p>{{ content }}</p>
+  </header>
+  <body>
+    <div>
+      <a class="button is-light" [routerLink]="['/create-product/']">Sukurti naują prekę</a>
+    </div>
+    <table>
+     <tr>
+       <th>Id</th>
+       <th>Pavadinimas</th>
+       <th>Aprašymas</th>
+       <th>Svoris gramais</th>
+       <th></th>
+       <th></th>
+     </tr>
+     <tr *ngFor="let us of readData">
+       <td>{{us.id}}</td>
+       <td >{{us.pavadinimas}}</td>
+       <td>{{us.aprasymas}}</td>
+       <td>{{us.svoris_gramais}}</td>
+     </tr>
+   </table> 
+   </body>
+</div>

@@ -1,0 +1,27 @@
+<header>
+</header>
+<body>
+
+  <div>
+    <a class="button is-light" (click)="onNewProduct()">Sukurti naują prekę</a>
+  </div>
+    <table class="table">
+     <tr>
+       <th>Id</th>
+       <th>Pavadinimas</th>
+       <th>Aprašymas</th>
+       <th>Svoris gramais</th>
+       <th></th>
+       <th></th>
+     </tr>
+     <tr *ngFor="let us of readData">
+       <td>{{us.id}}</td>
+       <td class="button is-info" (click)="view(us.id)">{{us.pavadinimas}}</td>
+       <td>{{us.aprasymas}}</td>
+       <td>{{us.svoris_gramais}}</td>
+       <td><a class="button is-warning" (click)="onUpdateProduct(us.id)">Redaguoti</a></td>
+       <td><a class="button is-danger" (click)="onDeleteProduct(us.id)">Šalinti</a></td>
+     </tr>
+   </table>
+ 
+   </body>

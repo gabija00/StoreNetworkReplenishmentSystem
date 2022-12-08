@@ -1,0 +1,46 @@
+<div id="app">
+  <nav class="navbar is-success" role="navigation" aria-label="main navigation" height="40px">
+    <ul class="navbar-nav mr-auto" routerLinkActive="active">
+      <li class="navbar-burger">
+        <a href="/home" class="button is-primary" routerLink="home">Pagrindinis</a>
+      </li>
+      <li class="navbar-burger" *ngIf="showAdminBoard">
+        <a href="/admin" class="button is-primary" routerLink="admin">Administratoriaus meniu</a>
+      </li>
+      <li class="navbar-burger" *ngIf="showManagerBoard">
+        <a href="/manager"class="button is-primary" routerLink="manager">Direktoriaus meniu</a>
+      </li>
+      <li class="navbar-burger" *ngIf="showOwnerBoard">
+        <a href="/owner"class="button is-primary" routerLink="owner">Savininko meniu</a>
+      </li>
+    </ul>
+    <ul class="navbar-item" *ngIf="!isLoggedIn">
+      <li class="nav-item">
+        <a href="/register" class="button is-primary" routerLink="register">Registruotis</a>
+      </li>
+      <li class="navbar-item">
+        <a href="/login" class="button is-primary" routerLink="login">Prisijungti</a>
+      </li>
+    </ul>
+
+    <ul class="navbar-item" *ngIf="isLoggedIn">
+      <li class="buttons">
+        <a href="/profile" class="button is-primary" routerLink="profile">{{ username }}</a>
+      </li>
+      <li class="buttons">
+        <a href class="button is-primary" (click)="logout()">Atsijungti</a>
+      </li>
+    </ul>
+  </nav>
+
+  <div class="container">
+    <router-outlet></router-outlet>
+  </div>
+  <footer class="footer">
+    <div class="content has-text-centered">
+      <p>
+        <strong>&copy;Prekių papildymo sistema</strong> sukūrė Gabija Vaivadaitė 2022. 
+      </p>
+    </div>
+  </footer>
+</div>

@@ -1,0 +1,79 @@
+<header>
+</header>
+<body>
+<div style="width: 400px; margin: auto;">
+    <div class="submit-form">
+      <div *ngIf="!submitted">
+        <div class="form-group">
+          <label for="title">Pavadinimas</label>
+          <input
+            type="text"
+            class="form-control"
+            id="title"
+            required
+            [(ngModel)]="shop.pavadinimas"
+            name="title"
+          />
+        </div>
+  
+        <div class="form-group">
+          <label for="description">Adresas</label>
+          <input
+            class="form-control"
+            id="description"
+            required
+            [(ngModel)]="shop.adresas"
+            name="description"
+          />
+        </div>
+        <div class="form-group">
+            <label for="description">Parduotuvės vadovas</label>
+            <input
+              class="form-control"
+              id="description"
+              required
+              [(ngModel)]="shop.parduotuves_vadovas"
+              name="description"
+            />
+          </div>
+          <div class="form-group">
+            <label for="description">Darbuotojų kiekis</label>
+            <input
+              class="form-control"
+              id="description"
+              required
+              [(ngModel)]="shop.darbuotoju_kiekis"
+              name="description"
+            />
+          </div>
+          <div class="form-group">
+            <label for="description">Prekių kiekis</label>
+            <input
+              class="form-control"
+              id="description"
+              required
+              [(ngModel)]="shop.prekiu_kiekis"
+              name="description"
+            />
+          </div>
+          <div class="form-group">
+            <label for="description">Savininkas</label>
+            <input
+              class="form-control"
+              id="description"
+              required
+              [(ngModel)]="shop.savininko_id"
+              name="description"
+            />
+          </div>
+  
+        <button (click)="saveShop()" class="btn btn-success">Išsaugoti</button>
+      </div>
+  
+      <div *ngIf="submitted">
+        <h4>Išsaugota sėkmingai!</h4>
+        <button class="btn btn-success" (click)="goBackToMain()">Grįžti į pagrindinį puslapį</button>
+      </div>
+    </div>
+  </div>
+</body>

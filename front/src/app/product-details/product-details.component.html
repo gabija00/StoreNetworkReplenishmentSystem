@@ -1,0 +1,54 @@
+<header>
+</header>
+  <body>
+<div style="width: 400px; margin: auto;">
+    <div *ngIf="currentProduct" class="edit-form">
+      <h4>Prekė</h4>
+      <form>
+        <div class="form-group">
+          <label for="title">Pavadinimas</label>
+          <input
+            type="text"
+            class="form-control"
+            id="title"
+            [(ngModel)]="currentProduct.pavadinimas"
+            name="title"
+          />
+        </div>
+        <div class="form-group">
+          <label for="description">Aprašymas</label>
+          <input
+            type="text"
+            class="form-control"
+            id="description"
+            [(ngModel)]="currentProduct.aprasymas"
+            name="description"
+          />
+        </div>
+        <div class="form-group">
+            <label for="description">Svoris</label>
+            <input
+              type="text"
+              class="form-control"
+              id="description"
+              [(ngModel)]="currentProduct.svoris_gramais"
+              name="description"
+            />
+          </div>
+      </form>
+      <button
+        type="submit"
+        class="badge badge-success"
+        (click)="updateProduct()"
+      >
+        Redaguoti
+      </button>
+      <p>{{ message }}</p>
+    </div>
+  
+    <div *ngIf="!currentProduct">
+      <br />
+      <p>Negalima pasiekti šios prekės</p>
+    </div>
+  </div>
+</body>
